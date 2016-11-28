@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -49,8 +50,42 @@ public class Person_Test {
 		person1.setStreet("702 Stone Gate Blvd");
 		person1.setPostalCode(21921);
 		
+		System.out.println("add person");
+		PersonDAL.addPerson(person1);
 	}
 	
 	
+	@Test
+	public void updatePerson_Test(){
+		System.out.println("update person");
+		person1.setFirstName("Alani");
+		person1.setLastName("Johnson");
+		PersonDAL.updatePerson(person1);
+	}
+	
+	@Test
+	public void getPersons_Test(){
+		System.out.println("get multiple persons");
+		ArrayList<PersonDomainModel> PersonList = PersonDAL.getPersons();
+		boolean bool = false;
+		for (PersonDomainModel person:PersonList){
+			if (person.getPersonID().equals(person1.getPersonID())){
+				bool = true;
+			}
+		}
+		assertTrue(bool);
+	}
+	
+	@Test
+	public void getPerson_Test(){
+		System.out.println("get person");
+		assertEquals(true,PersonDAL.getPerson(person1UUID).getPersonID().equals(person1UUID));
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass(){
+		System.out.println("tear down");
+		PersonDAL.deletePerson(person1UUID);
+	}
 
 }

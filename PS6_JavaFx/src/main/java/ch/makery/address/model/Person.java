@@ -66,4 +66,13 @@ public class Person extends PersonDomainModel {
     {
     	return new SimpleIntegerProperty(getPostalCode());    	
     }
+    
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    /*public ObjectProperty<Date> birthdayProperty() {
+        return birthday;
+    }*/
 }

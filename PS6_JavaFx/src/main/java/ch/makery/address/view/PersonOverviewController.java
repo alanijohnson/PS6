@@ -120,8 +120,10 @@ public class PersonOverviewController {
         	
         	//TODO: Delete the person, call the deletePerson(perID) method
         	//		in the DAL
-        	 
-            personTable.getItems().remove(selectedIndex);
+        	
+        	PersonDAL.deletePerson(perID);
+        	mainApp.RefreshPersonTable();
+            //personTable.getItems().remove(selectedIndex);
             
             
         } else {
@@ -158,8 +160,9 @@ public class PersonOverviewController {
         	
         	//TODO: Delete the person, call the addPerson(perID) method
         	//		in the DAL
-        	        	
-            mainApp.getPersonData().add(tempPerson);
+        	PersonDAL.addPerson(per);
+        	mainApp.RefreshPersonTable();
+            //mainApp.getPersonData().add(tempPerson);
         }
     }
 
@@ -189,9 +192,9 @@ public class PersonOverviewController {
             	
             	//TODO: Delete the person, call the updatePerson(perID) method
             	//		in the DAL
+            	PersonDAL.updatePerson(updatePer);
             	
-            	
-                showPersonDetails(selectedPerson);
+                //showPersonDetails(selectedPerson);
                 mainApp.RefreshPersonTable();
             }
 
